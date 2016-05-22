@@ -18,6 +18,13 @@ export default class GestureEvent extends EventProto{
          * 绑定实例dom节点和配置信息
          */
         this.ele=ele;
+        /**p
+         * 自定义配置属性
+         * @type {number}
+         */
+        this.defaultOptions={
+            triggerDistance:20,//至少手指移动20px
+        };
         /**
          * 绑定事件
          */
@@ -99,10 +106,20 @@ export default class GestureEvent extends EventProto{
         e.preventDefault();
     }
     _touchEnd(e){
-        let getSliderInfo = this.getSliderInfo();
-        let eventTypeName =  getSliderInfo[getSliderInfo['direction']];
+        let SliderInfo = this.getSliderInfo();
+        let distance= this.defaultOptions.triggerDistance;
+        /**
+         * 滑动距离不足，直接返回
+         */
+        if((SliderInfo.direction=='x'&&SliderInfo['moveX']<distance)||
+            (SliderInfo.direction=='y'&&SliderInfo['moveY']<distance)) {
+            //回退到未滑动的状态
+            this.trigger('swipeNotMove',[SliderInfo,e.target]);
+            return false;
+        }
+        let eventTypeName =  SliderInfo[SliderInfo['direction']];
         //触发swipeLeft,swipeRight,swipeUp,swipeDown
-        this.trigger('swipe'+eventTypeName,[getSliderInfo,e.target]);
+        this.trigger('swipe'+eventTypeName,[SliderInfo,e.target]);
         //阻止默认滚动行为
         e.preventDefault();
         //回滚实例数据
