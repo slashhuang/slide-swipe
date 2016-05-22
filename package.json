@@ -1,11 +1,11 @@
 {
-  "name": "swipe-gesture",
+  "name": "slide-swipe",
   "version": "0.1.1",
-  "description": "swipe-gesture is a light weight lib for mobile web app gesture management",
+  "description": "slide-swipe is a light weight lib for mobile web app gesture management",
   "main": "lib/",
-  "repository": "git://code.dianpingoa.com/min.xiao/module-template.git",
+  "repository": "git@github.com:future-team/slide-swipe.git",
   "keywords": [
-    "mobile","swipe","gesture"
+    "mobile","swipe","slide-swipe"
   ],
   "scripts": {
     "build": "node_modules/.bin/gulp && node_modules/.bin/gulp min",
@@ -57,7 +57,7 @@
     "webpack-dev-server": "^1.10.1"
   },
   "bugs": {
-    "url": "https://github.com/future-team/swipe-gesture/issues"
+    "url": "https://github.com/future-team/slide-swipe/issues"
   },
-  "homepage": "https://github.com/future-team/swipe-gesture"
+  "homepage": "https://github.com/future-team/slide-swipe"
 }
