@@ -1,26 +1,19 @@
-# module-template
+# swipe-gesture
+> 轻量级的移动端开发手势管理系统
 
-这是一个模块组件开发的脚手架项目，用于快速搭建模块开发项目。
+## 手势系统【在H5界面实现原生的手势系统】
+- swipeLeft: 左滑动
+- swipeRight: 右滑动
+- swipeUp: 上滑动
+- swipeDown: 下滑动
+- fastTap: 快于ios系统的点击
+- dbTap: 双击
+- longPress: 长按
 
-## 使用
-
-- 下载此项目至本地，修改项目名称和package.json里的信息；
-- git remote rm origin
-- git remote add origin {你的仓库地址}  例如：git remote add origin git@code.dianpingoa.com:pc-trade-f2e/apollo-template-static.git
-- git fetch
-- git pull origin master
-
-- 全局安装smartDoc 用于生成文档
-
-## Command
-
-```
-	#测试	
-	npm run test	
-	#打包	
-	npm run build	
-	#例子演示	
-	npm run demo	
-```
-
-
+## 开发规划
+|-事件父类(GestureEvent)  
+|- eventList (dom事件管理对象，需要在子类中执行super操作以继承)  
+|- on(type,func,boolean) (注册subscribe)  
+|- off(type,func) (移除监听remove)  
+|- trigger(type[,callback]) (触发事件)  
+   
