@@ -17,9 +17,9 @@
 |- off(type,func) (移除监听remove)  
 |- trigger(type[,callback]) (触发事件)
 
-|-手势事件(GestureEvent)  
-|- bind(type,func) (挂载原生事件)
-|- unbind(type,func) (移除回调函数) 
+|-手势事件(GestureEvent)    
+|- bind(type,func) (挂载原生事件)  
+|- unbind(type,func) (移除回调函数)   
 
    
 ## 单元测试

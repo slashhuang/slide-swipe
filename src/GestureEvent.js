@@ -100,26 +100,45 @@ export default class GestureEvent extends EventProto{
     _touchMove(e){
         this.setSliderLastInfo(e);
         let getSliderInfo = this.getSliderInfo();
-        //触发swipeMove
+        //@TODO 是否触发swipeMove有待商榷
         this.trigger('swipeMove',[getSliderInfo,e.target]);
         //阻止默认滚动行为
         e.preventDefault();
     }
     _touchEnd(e){
+        debugger;
+        /**
+         * 手指信息
+         * @type {{moveTime, positionInfo, direction, moveX, moveY, startX, startY, lastX, lastY}|*}
+         */
         let SliderInfo = this.getSliderInfo();
         let distance= this.defaultOptions.triggerDistance;
         /**
-         * 滑动距离不足，直接返回
+         * 事件信息
          */
-        if((SliderInfo.direction=='x'&&SliderInfo['moveX']<distance)||
-            (SliderInfo.direction=='y'&&SliderInfo['moveY']<distance)) {
-            //回退到未滑动的状态
+        if(SliderInfo.moveTime<150 && SliderInfo.moveX<5 &&SliderInfo.moveY<5 ){
+            /**
+             * 触发快速点击事件
+             */
+            this.trigger('fastTap',[SliderInfo,e.target]);
+        }else if(SliderInfo.moveTime>1500 && SliderInfo.moveX<5 &&SliderInfo.moveY<5 ){
+            /**
+             * 长按和手指不移动，触发longTap事件
+             */
+            this.trigger('longTap')
+        }else if(SliderInfo.moveTime>150&& SliderInfo.moveTime<1500 && ((SliderInfo['moveX']>distance||SliderInfo['moveY'])>distance)){
+            /**
+             * x轴和y轴有一个方向滑动距离够===>>>>触发swipe事件
+             */
+            let eventTypeName =  SliderInfo[SliderInfo['direction']];
+            //触发swipeLeft,swipeRight,swipeUp,swipeDown
+            this.trigger('swipe'+eventTypeName,[SliderInfo,e.target]);
+        }else{
+            /**
+             * 什么条件都不满足,触发复原事件
+             */
             this.trigger('swipeNotMove',[SliderInfo,e.target]);
-            return false;
         }
-        let eventTypeName =  SliderInfo[SliderInfo['direction']];
-        //触发swipeLeft,swipeRight,swipeUp,swipeDown
-        this.trigger('swipe'+eventTypeName,[SliderInfo,e.target]);
         //阻止默认滚动行为
         e.preventDefault();
         //回滚实例数据
@@ -132,13 +151,13 @@ export default class GestureEvent extends EventProto{
         let that =this;
         let touchEvents={
             'touchstart':{
-                callback:that._touchStart
+                callback:that._touchStart.bind(that)
             },
             'touchmove':{
-                callback:that._touchMove
+                callback:that._touchMove.bind(that)
             },
             'touchend':{
-                callback:that._touchEnd
+                callback:that._touchEnd.bind(that)
             }
         };
         /**
@@ -149,13 +168,13 @@ export default class GestureEvent extends EventProto{
             'mousedown':{
                 callback:(e)=>{
                     that._touchStart(e);
-                    that.bind('mousemove',that._touchMove)
+                    that.bind('mousemove',that._touchMove.bind(that))
                 }
             },
             'mouseup':{
                 callback:(e)=>{
                     that._touchEnd(e);
-                    that.unbind('mousemove',that._touchMove)
+                    that.unbind('mousemove',that._touchMove.bind(that))
                 }
             }
         };

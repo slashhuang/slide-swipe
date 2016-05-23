@@ -15,4 +15,4 @@ var options={
         console.log(info)
     }
 };
-var swipeInstance = new Slider(node,options)
+var swipeInstance = new Slider(node,options);

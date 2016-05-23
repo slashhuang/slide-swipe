@@ -18,12 +18,15 @@ export default class EventProto {
      * @param func 回调函数
      */
     on(type,func){
-        let typeList = this.eventList[type];
-        if(!!typeList){
-            typeList.push(func)
-        }
-        else{
-            typeList=[func];
+        if(typeof func!='function'){
+            Warning(`you should pass a function as "on" parameter `);
+        }else{
+            if(!!this.eventList[type]){
+                this.eventList[type].push(func)
+            }
+            else{
+                this.eventList[type]=[func];
+            }
         }
     }
     off(type,func){
