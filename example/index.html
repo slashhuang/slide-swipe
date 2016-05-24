@@ -4,7 +4,8 @@
     <!-- 声明文档使用的字符编码 -->
     <meta charset='utf-8'>
     <!-- 优先使用 IE 最新版本和 Chrome -->
-    <meta name=”viewport” content=”width=device-width, initial-scale=1, maximum-scale=1″>
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="no" />
 
     <title>图片预览</title>
     <style>
@@ -19,20 +20,42 @@
             height:inherit;
             display: inline-block;
         }
-        .img-list{
+        #horizontal{
             width:900px;
             height:100px;
+            transition: all ease .4s;
+        }
+        #vertical{
+            width:300px;
+            height:300px;
+            transition: all ease .4s;
+        }
+        .over-flow{
+            width:100%;
+            height:1000px;
+            background-color: #0086b3;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="img-list" id="root">
+    <div class="img-list" id="horizontal">
         <img src="http://img5.imgtn.bdimg.com/it/u=4246510199,2069483326&fm=21&gp=0.jpg">
         <img src="http://img14.poco.cn/mypoco/myphoto/20130131/22/17323571520130131221457027_640.jpg">
         <img src="http://img.taopic.com/uploads/allimg/110906/1382-110Z611025585.jpg">
     </div>
 </div>
-<script src="/dist/slide-swipe.js"></script>
+<div class="container">
+    <div class="img-list" id="vertical">
+        <img src="http://img5.imgtn.bdimg.com/it/u=4246510199,2069483326&fm=21&gp=0.jpg">
+        <img src="http://img14.poco.cn/mypoco/myphoto/20130131/22/17323571520130131221457027_640.jpg">
+        <img src="http://img.taopic.com/uploads/allimg/110906/1382-110Z611025585.jpg">
+    </div>
+</div>
+<div class="over-flow">
+
+</div>
+<script src="./slide-swipe.js"></script>
+<!--<script src="/example/slide-swipe.js"></script>-->
 </body>
 </html>

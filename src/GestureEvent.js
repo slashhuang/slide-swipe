@@ -23,7 +23,7 @@ export default class GestureEvent extends EventProto{
          * @type {number}
          */
         this.defaultOptions={
-            triggerDistance:20,//至少手指移动20px
+            triggerDistance:10,//至少手指移动20px
         };
         /**
          * 绑定事件【目前支持如下事件列表】
@@ -84,6 +84,7 @@ export default class GestureEvent extends EventProto{
             y: this.lastY - this.startY >= 0 ? 'Down' : 'Up'
         };
         return {
+            moveName:positionInfo[direction],
             moveTime: moveTime,
             positionInfo: positionInfo,
             direction: direction,
@@ -96,24 +97,28 @@ export default class GestureEvent extends EventProto{
         }
     }
     _touchStart(e){
+        //阻止默认滚动行为
+        e.preventDefault();
         //这里只允许单指操作，不会影响鼠标操作
         if (e.touches && e.touches.length > 1) {
             return false;
         }
         this.setStartInfo(e);
         this.setSliderLastInfo(e);
-        //阻止默认滚动行为
-        e.preventDefault();
     }
     _touchMove(e){
+        //阻止默认滚动行为
+        e.preventDefault();
+        e.stopPropagation();
         this.setSliderLastInfo(e);
         let getSliderInfo = this.getSliderInfo();
         //@TODO 是否触发swipeMove有待商榷
-        this.trigger('swipeMove',[getSliderInfo,e.target]);
-        //阻止默认滚动行为
-        e.preventDefault();
+        this.trigger('swipeMove',[e.target,getSliderInfo]);
     }
     _touchEnd(e){
+        //阻止默认滚动行为
+        e.preventDefault();
+        e.stopPropagation();
         /**
          * 手指信息
          * @type {{moveTime, positionInfo, direction, moveX, moveY, startX, startY, lastX, lastY}|*}
@@ -124,11 +129,11 @@ export default class GestureEvent extends EventProto{
             /**
              * 触发快速点击事件
              */
-            'fastTap':SliderInfo.moveTime<150 && SliderInfo.moveX<5 &&SliderInfo.moveY<5,
+            'fastTap':SliderInfo.moveTime<100 && SliderInfo.moveX<5 &&SliderInfo.moveY<5,
             /**
              * x轴和y轴有一个方向滑动距离够===>>>>触发swipe事件
              */
-            'swipe':SliderInfo.moveTime>150 &&
+            'swipe':SliderInfo.moveTime>100 &&
                     SliderInfo.moveTime<1500 &&
                     ((SliderInfo['moveX']>distance||SliderInfo['moveY']>distance)),
             /**
@@ -145,17 +150,15 @@ export default class GestureEvent extends EventProto{
         }else if(triggerCondition['longTap'] ){
             this.trigger('longTap')
         }else if(triggerCondition['swipe']){
-            let eventTypeName =  SliderInfo['positionInfo'][SliderInfo['direction']];
+            let eventTypeName =  SliderInfo['moveName'];
             //触发swipeLeft,swipeRight,swipeUp,swipeDown
-            this.trigger('swipe'+eventTypeName,[SliderInfo,e.target]);
+            this.trigger('swipe'+eventTypeName,[e.target,SliderInfo]);
         }else{
             /**
              * 什么条件都不满足,触发复原事件
              */
-            this.trigger('swipeNotMove',[SliderInfo,e.target]);
+            this.trigger('swipeNotMove',[e.target,SliderInfo]);
         }
-        //阻止默认滚动行为
-        e.preventDefault();
         //回滚实例数据
         this.startX = this.startY = this.lastX = this.lastY = 0;
     }

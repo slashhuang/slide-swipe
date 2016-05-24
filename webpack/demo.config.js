@@ -30,7 +30,7 @@ module.exports =extend({}, {
         './example/src/index.js'
     ],
     output:{
-        path:path.join(process.cwd(),'dist'),
+        path:path.join(process.cwd(),'example'),
         filename:config.name+'.js'
     },
     module:{

@@ -29,7 +29,15 @@ gulp.task('open', function () {
   gulp.src(__filename)
       .pipe(open({uri: "http://127.0.0.1:8081/webpack-dev-server/example/index.html"}));
 });
-
+gulp.task('example-webpack',function(done){
+  webpack(demoWebpackConfig).run(function(err, stats) {
+    if(err) throw new gutil.PluginError("example-webpack", err);
+    gutil.log("[webpack]", stats.toString({
+      // output options
+    }));
+    done();
+  });
+});
 gulp.task('demo-webpack', function(done) {
 
   var compiler = webpack(demoWebpackConfig);
@@ -41,7 +49,7 @@ gulp.task('demo-webpack', function(done) {
      "*": "http://localhost:9090"
      },*/
     filename: config.name+".js",
-    publicPath: "/dist/",
+    publicPath: "/example/",
     //headers: { "X-Custom-Header": "yes" },
     stats: { colors: true }
   });
@@ -86,7 +94,7 @@ gulp.task('watch', function () {
   gulp.watch(['./lib/**/*.*'], ['demo']);
 });
 
-gulp.task('default', ['babel','require-webpack'/*, 'html', 'asset'*/]);
+gulp.task('default', ['babel','require-webpack','example-webpack'/* 'asset'*/]);
 gulp.task('test',['karma']);
 gulp.task('demo', ['demo-webpack','open']);
 gulp.task('min',['min-webpack']);

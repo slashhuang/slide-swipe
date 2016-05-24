@@ -1,13 +1,21 @@
 import Slider from '../../src/index.js';
-var node = document.getElementById('root');
-var options={
-    bindEvents:{
-        "swipeLeft":(ele,info)=>{
-            node.style["-webkit-transform"]='translate3d(-300px,0,0)'
-        },
-        "swipeRight":()=>{
-            node.style["-webkit-transform"]='translate3d(-300px,0,0)'
-        }
-    }
+var verticalNode = document.getElementById('vertical');
+var horizontalNode = document.getElementById('horizontal');
+document.addEventListener("touchmove", function(e) {
+    //alert('moving');
+    //e.preventDefault();
+},false);
+var verticalNodeOptions={
+    swipeGap:300,//每次滑动的距离
+    swipeLength:3,//子元素个数
+    direction:'vertical',//滑动方向
+    loop:true//是否滑动循环
 };
-var swipeInstance = new Slider(node,options);
+var horizontalNodeOptions={
+    swipeGap:300,//每次滑动的距离
+    swipeLength:3,//子元素个数
+    direction:'horizontal',//滑动方向
+    loop:false//是否滑动循环
+};
+var verticalInstance = new Slider(verticalNode,verticalNodeOptions);
+var horizontalInstance = new Slider(horizontalNode,horizontalNodeOptions);
