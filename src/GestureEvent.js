@@ -37,7 +37,7 @@ export default class GestureEvent extends EventProto{
          *'longTap'
          */
         this.bindEvents();
-        document.addEventListener('touchmove',()=>{})
+        document.addEventListener('touchmove',()=>{});
     }
     bind(type,func){
         this.ele.addEventListener(type,func,false);
@@ -88,11 +88,6 @@ export default class GestureEvent extends EventProto{
     _touchStart(e){
         //阻止默认滚动行为
         e.preventDefault();
-        //注册dom失去滚动事件
-        //this.stopDocMove(true);
-        document.getElementById('info').innerHTML+='start';
-
-        //debugger;
         //这里只允许单指操作，不会影响鼠标操作
         if (e.touches && e.touches.length > 1) {
             return false;
@@ -109,7 +104,6 @@ export default class GestureEvent extends EventProto{
         this.trigger('swipeMove',[e.target,getSliderInfo]);
     }
     _touchEnd(e){
-        document.getElementById('info').innerHTML+='end';
         //阻止默认滚动行为
         e.preventDefault();
         //debugger;
@@ -140,7 +134,6 @@ export default class GestureEvent extends EventProto{
         /**
          * 事件信息
          */
-        console.log(JSON.stringify(SliderInfo))
         if(triggerCondition['fastTap']){
             this.trigger('fastTap',[SliderInfo,e.target]);
         }else if(triggerCondition['longTap'] ){
