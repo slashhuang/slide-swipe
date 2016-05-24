@@ -26,7 +26,15 @@ export default class GestureEvent extends EventProto{
             triggerDistance:20,//至少手指移动20px
         };
         /**
-         * 绑定事件
+         * 绑定事件【目前支持如下事件列表】
+         *'swipeLeft',
+         *'swipeRight',
+         *'swipeUp',
+         *'swipeDown',
+         *'swipeNotMove',
+         *'fastTap',
+         *'dbTap',
+         *'longTap'
          */
         this.bindEvents();
         /**
@@ -106,31 +114,38 @@ export default class GestureEvent extends EventProto{
         e.preventDefault();
     }
     _touchEnd(e){
-        debugger;
         /**
          * 手指信息
          * @type {{moveTime, positionInfo, direction, moveX, moveY, startX, startY, lastX, lastY}|*}
          */
         let SliderInfo = this.getSliderInfo();
         let distance= this.defaultOptions.triggerDistance;
-        /**
-         * 事件信息
-         */
-        if(SliderInfo.moveTime<150 && SliderInfo.moveX<5 &&SliderInfo.moveY<5 ){
+        let triggerCondition={
             /**
              * 触发快速点击事件
              */
-            this.trigger('fastTap',[SliderInfo,e.target]);
-        }else if(SliderInfo.moveTime>1500 && SliderInfo.moveX<5 &&SliderInfo.moveY<5 ){
-            /**
-             * 长按和手指不移动，触发longTap事件
-             */
-            this.trigger('longTap')
-        }else if(SliderInfo.moveTime>150&& SliderInfo.moveTime<1500 && ((SliderInfo['moveX']>distance||SliderInfo['moveY'])>distance)){
+            'fastTap':SliderInfo.moveTime<150 && SliderInfo.moveX<5 &&SliderInfo.moveY<5,
             /**
              * x轴和y轴有一个方向滑动距离够===>>>>触发swipe事件
              */
-            let eventTypeName =  SliderInfo[SliderInfo['direction']];
+            'swipe':SliderInfo.moveTime>150 &&
+                    SliderInfo.moveTime<1500 &&
+                    ((SliderInfo['moveX']>distance||SliderInfo['moveY']>distance)),
+            /**
+             * 长按和手指不移动，触发longTap事件
+             */
+            "longTap":SliderInfo.moveTime>1500 && SliderInfo.moveX<5 &&SliderInfo.moveY<5
+        };
+        /**
+         * 事件信息
+         */
+        console.log(JSON.stringify(SliderInfo))
+        if(triggerCondition['fastTap']){
+            this.trigger('fastTap',[SliderInfo,e.target]);
+        }else if(triggerCondition['longTap'] ){
+            this.trigger('longTap')
+        }else if(triggerCondition['swipe']){
+            let eventTypeName =  SliderInfo['positionInfo'][SliderInfo['direction']];
             //触发swipeLeft,swipeRight,swipeUp,swipeDown
             this.trigger('swipe'+eventTypeName,[SliderInfo,e.target]);
         }else{

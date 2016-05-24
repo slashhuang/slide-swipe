@@ -1,19 +1,29 @@
 /**
  * Created by slashhuang on 16/5/22.
+ * Slider为GestureEvent的具体使用实例
+ * 用户可以自行根据GestureEvent扩展自己对应手势的回调函数
  */
 import warning from './utils/warning.js';
 import GestureEvent from './GestureEvent.js';
 export default class Slider extends GestureEvent{
     constructor(ele,options){
         super(ele,options);
-        this.bindCustomEvents();
+        /**
+         * 如果用户决定自定义手势事件，则覆盖预先定义好的
+         */
+        if(!options.bindEvents){
+            this.bindDefinedEvents();
+        }else{
+            for(let key in options.bindEvents){
+                this.on(key,options.bindEvents[key]);
+            }
+        }
         /**
          * 配置信息
          */
         this.options=options;
-        debugger;
     }
-    bindCustomEvents(){
+    bindDefinedEvents(){
         let that = this;
         let EventName=[
             'swipeLeft',
@@ -21,8 +31,8 @@ export default class Slider extends GestureEvent{
             'swipeUp',
             'swipeDown',
             'swipeNotMove',
-            'fastTap',
-            'dbTap',
+            //'fastTap',
+            //'dbTap',
             'longTap'
         ];
         /**
@@ -30,7 +40,7 @@ export default class Slider extends GestureEvent{
          */
         EventName.forEach(
             (eventName)=>{
-                that.on(eventName,that[eventName]);
+                that.on(eventName,that[eventName]||function(){});
             }
         );
     }
@@ -46,8 +56,21 @@ export default class Slider extends GestureEvent{
      * 手指移动事件小于1500ms
      * 手指滑动至少5个单位
      */
-    swipeLeft(){
+    swipeLeft(e,info){
+        debugger;
         alert('swipeLeft')
+    }
+    swipeRight(e,info){
+        debugger;
+        alert('swipeRight')
+    }
+    swipeUp(e,info){
+        debugger;
+        alert('swipeUp')
+    }
+    swipeDown(e,info){
+        debugger;
+        alert('swipeDown')
     }
     /**
      * 恢复原状
@@ -60,7 +83,7 @@ export default class Slider extends GestureEvent{
      */
     warningForTap(){
         if(this.eventList['dbTap']&&this.eventList['dbTap']){
-            Warning(`you can't add event "dbTap" and "fastTap" at the same time,if you really want to,
+            warning(`you can't add event "dbTap" and "fastTap" at the same time,if you really want to,
                     please use click instead of fastTap`);
         }
     }

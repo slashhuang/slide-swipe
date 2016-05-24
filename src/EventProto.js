@@ -47,6 +47,9 @@ export default class EventProto {
      */
     trigger(type,args){
         let typeList = this.eventList[type];
+        /**
+         * trigger没有对应的回调函数，则默认不做任何事
+         */
         if(!!typeList){
             for(let i=0;i<typeList.length;i++){
                 typeList[i].apply(this,args)
