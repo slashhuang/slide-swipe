@@ -23,16 +23,15 @@ var getEntry =function() {
 
 module.exports =extend({}, {
     //entry:baseFileDir+'src/index.js',
-    devtool:'eval',
     entry:[
-        'webpack-dev-server/client?http://localhost:8081',
-        'webpack/hot/only-dev-server',
         './example/src/index.js'
     ],
     output:{
+        libraryTarget: 'umd',
         path:path.join(process.cwd(),'example'),
         filename:config.name+'.js'
     },
+    devtool:'eval',
     module:{
         loaders:[
             {
@@ -45,11 +44,7 @@ module.exports =extend({}, {
                 loader: "style-loader!css-loader!less-loader"
             }
         ]
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ]
+    }
 });
 /*
  module:{

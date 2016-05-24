@@ -23,7 +23,7 @@ export default class GestureEvent extends EventProto{
          * @type {number}
          */
         this.defaultOptions={
-            triggerDistance:10,//至少手指移动20px
+            triggerDistance:10,//至少手指移动10px
         };
         /**
          * 绑定事件【目前支持如下事件列表】
@@ -37,19 +37,7 @@ export default class GestureEvent extends EventProto{
          *'longTap'
          */
         this.bindEvents();
-        /**
-         *  检测目标对象的参数
-         * @type {{startX: number, startY: number, lastX: number, lastY: number}}
-         */
-        let DOMInfo={
-            startX : 0,
-            startY : 0,
-            lastX : 0,
-            lastY : 0,
-            startTime:Date.now()
-        };
-        Object.assign(this,DOMInfo);
-
+        document.addEventListener('touchmove',()=>{})
     }
     bind(type,func){
         this.ele.addEventListener(type,func,false);
@@ -96,9 +84,15 @@ export default class GestureEvent extends EventProto{
             lastY: this.lastY
         }
     }
+
     _touchStart(e){
         //阻止默认滚动行为
         e.preventDefault();
+        //注册dom失去滚动事件
+        //this.stopDocMove(true);
+        document.getElementById('info').innerHTML+='start';
+
+        //debugger;
         //这里只允许单指操作，不会影响鼠标操作
         if (e.touches && e.touches.length > 1) {
             return false;
@@ -109,16 +103,18 @@ export default class GestureEvent extends EventProto{
     _touchMove(e){
         //阻止默认滚动行为
         e.preventDefault();
-        e.stopPropagation();
         this.setSliderLastInfo(e);
         let getSliderInfo = this.getSliderInfo();
         //@TODO 是否触发swipeMove有待商榷
         this.trigger('swipeMove',[e.target,getSliderInfo]);
     }
     _touchEnd(e){
+        document.getElementById('info').innerHTML+='end';
         //阻止默认滚动行为
         e.preventDefault();
-        e.stopPropagation();
+        //debugger;
+        //移除dom滚动事件
+        //this.stopDocMove(false);
         /**
          * 手指信息
          * @type {{moveTime, positionInfo, direction, moveX, moveY, startX, startY, lastX, lastY}|*}

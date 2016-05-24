@@ -1,10 +1,6 @@
 import Slider from '../../src/index.js';
 var verticalNode = document.getElementById('vertical');
 var horizontalNode = document.getElementById('horizontal');
-document.addEventListener("touchmove", function(e) {
-    //alert('moving');
-    //e.preventDefault();
-},false);
 var verticalNodeOptions={
     swipeGap:300,//每次滑动的距离
     swipeLength:3,//子元素个数

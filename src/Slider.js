@@ -8,7 +8,7 @@ import GestureEvent from './GestureEvent.js';
 export default class Slider extends GestureEvent{
     static defaultOptions={
         direction:'horizontal',//默认横向滚动
-        loop:'false',//默认不循环
+        loop:'false'//默认不循环
     };
     /**
      * 初始化参数配置
