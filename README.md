@@ -25,7 +25,7 @@
 |- 封装手势系统的所有事件
 
 ## UI展示
->![slide-swipe展示](/example/img/slide-swipe.png)
+>![slide-swipe展示](/example/img/slide-swipe.gif)
 
 
 ## example[demo中的使用代码]
