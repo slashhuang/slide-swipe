@@ -14,7 +14,7 @@ var Node1Options={
     loop:true,//是否滑动循环
     indicator:{//提示框
         indicatorContainerId:'vertical-indicator',//提示框的容器id
-        activeCssName:'indicator-active-color'//激活图片对应的class名字
+        activeCssName:'indicator-active'//激活图片对应的class名字
     }
 };
 var verticalInstance = new Slider(Node1,Node1Options);
@@ -28,7 +28,7 @@ var Node2Options={
     loop:false,//是否滑动循环
     indicator:{//提示框
         indicatorContainerId:'horizontal-indicator',//提示框的容器id
-        activeCssName:'indicator-active-color'//激活图片对应的class名字
+        activeCssName:'indicator-active'//激活图片对应的class名字
     }
 };
 var horizontalInstance = new Slider(Node2,Node2Options);
@@ -42,7 +42,7 @@ var autoNodeOptions={
     loop:true,
     indicator:{//提示框
         indicatorContainerId:'auto-indicator',//提示框的容器id
-        activeCssName:'indicator-active-color'//激活图片对应的class名字
+        activeCssName:'indicator-active'//激活图片对应的class名字
     }
 };
 var autoInstance = new Slider(autoNode,autoNodeOptions);

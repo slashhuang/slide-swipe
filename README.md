@@ -74,9 +74,8 @@
     var autoInstance = new Slider(autoNode,autoNodeOptions);
 ```
 
-
-   
 ## 单元测试
 ``` bash
+    cnpm install slie-swipe
     npm run test
 ```
