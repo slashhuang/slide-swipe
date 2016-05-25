@@ -1,48 +1,46 @@
 import Slider from '../../src/index.js';
+var NodeList=document.getElementsByClassName('container');
+
 /**
  * 测试普通横向滑动模块
  */
-var Node = document.getElementById('horizontal-no-ball');
-var NodeInstance = new Slider(Node);
+var NodeInstance = new Slider(NodeList[0]);
 
 /**
  * 测试横向滑动模块
  */
-var Node1 = document.getElementById('vertical');
 var Node1Options={
-    direction:'vertical',//滑动方向
+    direction:'horizontal',//滑动方向
+    autoPlay:true,
+    duration:1500,
     loop:true,//是否滑动循环
-    indicator:{//提示框
-        indicatorContainerId:'vertical-indicator',//提示框的容器id
-        activeCssName:'indicator-active'//激活图片对应的class名字
-    }
+    containerClassName:'img-list',//滑动容器的className值
+    indicatorClassName:'img-indicator',//滑动容器下方小圆点容器className值
+    activeClass:'indicator-active'//滑动容器下方小圆点激活的className值
 };
-var verticalInstance = new Slider(Node1,Node1Options);
+var verticalInstance = new Slider(NodeList[1],Node1Options);
 
 /**
  * 测试竖向滑动模块
  */
-var Node2 = document.getElementById('horizontal');
 var Node2Options={
     direction:'horizontal',//滑动方向
     loop:false,//是否滑动循环
-    indicator:{//提示框
-        indicatorContainerId:'horizontal-indicator',//提示框的容器id
-        activeCssName:'indicator-active'//激活图片对应的class名字
-    }
+    containerClassName:'img-list',//滑动容器的className值
+    indicatorClassName:'img-indicator',//滑动容器下方小圆点容器className值
+    activeClass:'indicator-active'//滑动容器下方小圆点激活的className值
 };
-var horizontalInstance = new Slider(Node2,Node2Options);
+var horizontalInstance = new Slider(NodeList[2],Node2Options);
 /**
  * 测试自动播放方式
  */
-var autoNode = document.getElementById('auto-play');
-var autoNodeOptions={
+var node3Options={
+    direction:'vertical',
     autoPlay:true,//是否自动播放
     duration:1500,//自动播放时间间隔
     loop:true,
-    indicator:{//提示框
-        indicatorContainerId:'auto-indicator',//提示框的容器id
-        activeCssName:'indicator-active'//激活图片对应的class名字
-    }
+    containerClassName:'img-list',//滑动容器的className值
+    indicatorClassName:'img-vertical-indicator',//滑动容器下方小圆点容器className值
+    activeClass:'indicator-active'//滑动容器下方小圆点激活的className值
 };
-var autoInstance = new Slider(autoNode,autoNodeOptions);
+var autoInstance = new Slider(NodeList[3],node3Options);

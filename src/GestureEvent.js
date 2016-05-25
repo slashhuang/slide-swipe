@@ -23,7 +23,7 @@ export default class GestureEvent extends EventProto{
          * @type {number}
          */
         this.defaultOptions={
-            triggerDistance:10,//至少手指移动10px
+            triggerDistance:10//至少手指移动10px
         };
         /**
          * 绑定事件【目前支持如下事件列表】
