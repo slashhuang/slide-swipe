@@ -11,15 +11,69 @@
 - longPress: 长按
 
 ## 开发规划
-|-事件父类(EventProto，用于自定义事件)  
+|- 手势类父类(EventProto，用于自定义事件)  
 |- eventList (dom事件管理对象，需要在子类中执行super操作以继承)  
 |- on(type,func,boolean) (注册subscribe)  
 |- off(type,func) (移除监听remove)  
 |- trigger(type[,callback]) (触发事件)
 
-|-手势事件(GestureEvent)    
+|- 手势类(GestureEvent封装touchEvent)    
 |- bind(type,func) (挂载原生事件)  
-|- unbind(type,func) (移除回调函数)   
+|- unbind(type,func) (移除回调函数) 
+  
+|- Slider手势类实例
+|- 封装手势系统的所有事件
+
+## example[demo中的使用代码]
+```javascript
+    import Slider from 'slide-swipe';
+    /**
+     * 测试普通横向滑动模块
+     */
+    var horizontaNoBalllNode = document.getElementById('horizontal-no-ball');
+    var horizontalNoBallInstance = new Slider(horizontaNoBalllNode);
+    /**
+     * 测试自动播放方式
+     */
+    var autoNode = document.getElementById('auto-play');
+    var autoNodeOptions={
+        autoPlay:true,//是否自动播放
+        duration:1500,//自动播放时间间隔
+        loop:true,
+        indicator:{//提示框
+            indicatorContainerId:'auto-indicator',//提示框的容器
+            activeCssName:'indicator-active-color'//下面的图片提示
+        }
+    };
+    var autoInstance = new Slider(autoNode,autoNodeOptions);    
+    /**
+     * 测试横向滑动模块
+     */
+    var verticalNode = document.getElementById('vertical');
+    var verticalNodeOptions={
+        direction:'vertical',//滑动方向
+        loop:true,//是否滑动循环
+        indicator:{//提示框
+            indicatorContainerId:'vertical-indicator',//提示框的容器
+            activeCssName:'indicator-active-color'//下面的图片提示
+        }
+    };
+    var verticalInstance = new Slider(verticalNode,verticalNodeOptions);    
+    /**
+     * 测试竖向滑动模块
+     */
+    var horizontalNode = document.getElementById('horizontal');
+    var horizontalNodeOptions={
+        direction:'horizontal',//滑动方向
+        loop:false,//是否滑动循环
+        indicator:{//提示框
+            indicatorContainerId:'horizontal-indicator',//提示框的容器
+            activeCssName:'indicator-active-color'//下面的图片提示
+        }
+    };
+    var horizontalInstance = new Slider(horizontalNode,horizontalNodeOptions);
+```
+
 
    
 ## 单元测试

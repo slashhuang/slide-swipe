@@ -6,9 +6,17 @@
 import warning from './utils/warning.js';
 import GestureEvent from './GestureEvent.js';
 export default class Slider extends GestureEvent{
+    /**
+     * slider参数配置
+     * @type {{direction: string, loop: string, swipeGap: number, swipeLength: number}}
+     */
     static defaultOptions={
         direction:'horizontal',//默认横向滚动
-        loop:'false'//默认不循环
+        autoPlay:false,//默认不自滚动
+        loop:false,//默认不循环
+        swipeGap:0,//每次滑动的距离
+        swipeLength:0,//子元素个数
+        indicator:null//slider下面的小圆点对象
     };
     /**
      * 初始化参数配置
@@ -17,11 +25,12 @@ export default class Slider extends GestureEvent{
      */
     constructor(ele,option){
         if(!(ele && ele.children && ele.children.length)){
-            warning("please use children's parentNode as 1st parameter for Slider");
+            warning("please use the parentNode of image list as 1st parameter for Slider");
             return;
         }
         let options= Object.assign({},Slider.defaultOptions,option);
         super(ele,options);
+        let that=this;
         /**
          * 配置信息
          */
@@ -35,6 +44,14 @@ export default class Slider extends GestureEvent{
             for(let key in options.bindEvents){
                 this.on(key,options.bindEvents[key]);
             }
+        }
+        /**
+         * 自动循环播放
+         */
+        if(options.autoPlay){
+            setInterval(()=>{
+                that.trigger('swipeLeft')
+            },options.duration||1000)
         }
         /**
          * currentIndex:当前数据
@@ -62,6 +79,31 @@ export default class Slider extends GestureEvent{
             }
         );
     }
+    renderIndicator(currentIndex){
+        //如果用户定义了indicator,则执行indicator的逻辑
+        let {indicatorContainerId,activeCssName}=this.options['indicator'];
+        if(!(indicatorContainerId&&activeCssName)){
+            warning('if you want to render indicator, you must assign value to "indicatorContainerId"' +
+                'and "activeCssName" ');
+        }else{
+            let indicatorNode = document.getElementById(indicatorContainerId);
+            let children = indicatorNode.children;
+            for(let i=0;i<children.length;i++){
+                children[i]['classList'].remove(activeCssName);
+            }
+            children[currentIndex]['classList'].add(activeCssName);
+        }
+    }
+    renderStyle(info){
+        let translateFormat =this.options.direction=='horizontal'? 'translate3d(x,0,0)':'translate3d(0,y,0)';
+        let replaceString=this.options.direction=='horizontal'?'x':'y';
+        let {currentIndex,swipeGap}=info;
+        //在渲染样式的时机，渲染下面的导航
+        if(this.options['indicator']){
+            this.renderIndicator(currentIndex);
+        }
+        return translateFormat.replace(replaceString,"-"+currentIndex*swipeGap+'px');
+    }
     /**
      * 按住时间长达1000ms，并且位移小于5,触发触发长按事件
      */
@@ -83,13 +125,7 @@ export default class Slider extends GestureEvent{
      * @param e
      * @param info
      */
-    renderStyle(info){
-        let translateFormat =this.options.direction=='horizontal'? 'translate3d(x,0,0)':'translate3d(0,y,0)';
-        let replaceString=this.options.direction=='horizontal'?'x':'y';
-        let {currentIndex,swipeGap}=info;
-        return translateFormat.replace(replaceString,"-"+currentIndex*swipeGap+'px');
-    }
-    swipeRight(e,info){
+    swipeRight(){
         if(this.animationInfo.currentIndex>0){
             this.animationInfo.currentIndex--;
             /**
@@ -100,7 +136,7 @@ export default class Slider extends GestureEvent{
         }
         this.ele.style["-webkit-transform"]=this.renderStyle(this.animationInfo);
     }
-    swipeLeft(e,info){
+    swipeLeft(){
         if(this.animationInfo.currentIndex<this.animationInfo['swipeLastIndex']){
             this.animationInfo.currentIndex++
         }else if(this.options.loop){
@@ -126,6 +162,7 @@ export default class Slider extends GestureEvent{
      */
     fastTap(){
         this.warningForTap();
+        alert(1)
     }
     /**
      * 双击事件与fastTap不兼容
@@ -138,7 +175,7 @@ export default class Slider extends GestureEvent{
      * 不能同时处理快速点击和双击
      */
     warningForTap(){
-        if(this.eventList['dbTap']&&this.eventList['dbTap']){
+        if(this.eventList['dbTap']&&this.eventList['fastTap']){
             warning(`you can't add event "dbTap" and "fastTap" at the same time,if you really want to,
                     please use click instead of fastTap`);
         }

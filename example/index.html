@@ -10,25 +10,31 @@
     <title>图片预览</title>
     <style>
         .container{
-            width:300px;
+            position: relative;
+            width:100%;
             height:100px;
             font-size: 0;
             overflow:hidden;
         }
-        .container img{
-            width:300px;
-            height:inherit;
-            display: inline-block;
-        }
-        #horizontal{
-            width:900px;
+        #horizontal,#horizontal-no-ball,#auto-play{
+            width:400%;
             height:100px;
             transition: all ease .4s;
         }
+        #horizontal img,#horizontal-no-ball img,#auto-play img{
+            width:25%;
+            height:inherit;
+            display: inline-block;
+        }
         #vertical{
-            width:300px;
-            height:300px;
+            width:100%;
+            height:400px;
             transition: all ease .4s;
+        }
+        #vertical img{
+            width:100%;
+            height:100px;
+            display: inline-block;
         }
         .over-flow{
             word-break: break-all;
@@ -36,24 +42,114 @@
             height:1000px;
             background-color: #0086b3;
         }
+        .hint{
+            text-align: center;
+            margin:10px;
+            font-size: 17px;
+        }
+        .img-indicator{
+            position: absolute;
+            width:200px;
+            bottom:20px;
+            left:50%;
+            margin-left:-100px;
+            text-align: center;
+        }
+        .img-indicator i{
+            display: inline-block;
+            margin:0 5px;
+            border-radius:20px;
+            width:10px;
+            height:10px;
+            background-color: white;
+        }
+        .img-indicator i.indicator-active-color{
+            background-color: #009998;
+        }
+
+
+        .img-vertical-indicator{
+            position: absolute;
+            height:100px;
+            width: 10px;
+            right:20px;
+            top:50%;
+            margin-top:-50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .img-vertical-indicator i{
+            display: block;
+            margin:3px;
+            border-radius:20px;
+            width:10px;
+            height:10px;
+            background-color: white;
+        }
+        .img-vertical-indicator i.indicator-active-color{
+            background-color: #009998;
+        }
+
     </style>
 </head>
 <body>
+
+<div class="hint">请横向滑动图片，查看简单测试</div>
 <div class="container">
-    <div class="img-list" id="horizontal">
-        <img src="http://img5.imgtn.bdimg.com/it/u=4246510199,2069483326&fm=21&gp=0.jpg">
-        <img src="http://img14.poco.cn/mypoco/myphoto/20130131/22/17323571520130131221457027_640.jpg">
-        <img src="http://img.taopic.com/uploads/allimg/110906/1382-110Z611025585.jpg">
+    <div class="img-list" id="horizontal-no-ball"></div>
+</div>
+<div class="hint">查看自动循环播放</div>
+
+<div class="container">
+    <div class="img-list" id="auto-play"></div>
+    <div class="img-indicator" id="auto-indicator" >
+        <i class="indicator-active-color"></i>
+        <i></i>
+        <i></i>
+        <i></i>
     </div>
 </div>
+<div class="hint">请横向滑动图片，查看富交互测试</div>
 <div class="container">
-    <div class="img-list" id="vertical">
-        <img src="http://img5.imgtn.bdimg.com/it/u=4246510199,2069483326&fm=21&gp=0.jpg">
-        <img src="http://img14.poco.cn/mypoco/myphoto/20130131/22/17323571520130131221457027_640.jpg">
-        <img src="http://img.taopic.com/uploads/allimg/110906/1382-110Z611025585.jpg">
+    <div class="img-list" id="horizontal"></div>
+    <div class="img-indicator" id="horizontal-indicator" >
+        <i class="indicator-active-color"></i>
+        <i></i>
+        <i></i>
+        <i></i>
     </div>
 </div>
+
+<div class="hint">请竖向滑动图片，查看富交互测试</div>
+
+<div class="container">
+    <div class="img-list" id="vertical"></div>
+    <div class="img-vertical-indicator" id="vertical-indicator" >
+        <i class="indicator-active-color"></i>
+        <i></i>
+        <i></i>
+        <i></i>
+    </div>
+</div>
+
 <div class="over-flow" id="info"></div>
+<script>
+    var imgList=[
+       'http://img5.imgtn.bdimg.com/it/u=1478257864,2882073929&fm=21&gp=0.jpg',
+        'http://www.bz55.com/uploads/allimg/150309/139-150309101F7.jpg',
+        'http://img2.zol.com.cn/product/95/20/ceSFw3e3TqLNM.jpg',
+        'http://www.bz55.com/uploads/allimg/150309/139-150309101F2.jpg'
+    ];
+    var imgListNodes=document.getElementsByClassName('img-list');
+    for(var i=0;i<imgListNodes.length;i++){
+        for(var j=0;j<imgList.length;j++){
+            imgListNodes[i].innerHTML+="<img src='"+imgList[j]+"'>"
+        }
+    }
+</script>
+
 <script src="./slide-swipe.js"></script>
 <!--<script src="/example/slide-swipe.js"></script>-->
 </body>
