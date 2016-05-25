@@ -7,7 +7,6 @@
 - swipeUp: 上滑动
 - swipeDown: 下滑动
 - fastTap: 快于ios系统的点击
-- dbTap: 双击
 - longPress: 长按
 
 ## 开发规划
@@ -27,13 +26,13 @@
 ## UI展示
 >![slide-swipe展示](/example/img/slide-swipe.gif)
 
-##使用
+## 命令
 ```bash
-  cnpm install slide-swipe
+   npm install slide-swipe
 ```
-## example[demo中的使用代码]
+## 使用[演示代码]
 ```javascript
-    import Slider from '../../src/index.js';
+    import Slider from 'slide-swipe';
     var NodeList=document.getElementsByClassName('container');
     /**
      * 测试普通横向滑动模块
