@@ -23,7 +23,7 @@ export default class Slider extends GestureEvent{
         let {containerClassName}=option;//滑动容器的className值
         let targetNode = ele.getElementsByClassName(containerClassName)[0];
         if(!(targetNode && targetNode.children && targetNode.children.length)){
-            warning("please pass containerClassName as a prop to `PhSwipe`");
+            warning("please pass `containerClassName` as a  key to option which is the 2nd argument of  `Slider`");
             return;
         }
         super(targetNode,option);
