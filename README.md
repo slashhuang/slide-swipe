@@ -24,6 +24,10 @@
 |- Slider手势类实例
 |- 封装手势系统的所有事件
 
+## UI展示
+>![slide-swipe展示](/example/img/slide-swipe.png)
+
+
 ## example[demo中的使用代码]
 ```javascript
     import Slider from '../../src/index.js';
