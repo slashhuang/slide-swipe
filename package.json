@@ -1,9 +1,9 @@
 {
   "name": "slide-swipe",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "slide-swipe is a light weight lib for mobile web app slide and swipe management",
   "main": "lib/",
-  "repository": "git@github.com:future-team/slide-swipe.git",
+  "repository": "git@github.com:slashhuang/slide-swipe.git",
   "keywords": [
     "mobile","swipe","slide-swipe"
   ],
@@ -56,7 +56,7 @@
     "webpack-dev-server": "^1.10.1"
   },
   "bugs": {
-    "url": "https://github.com/future-team/slide-swipe/issues"
+    "url": "https://github.com/slashhuang/slide-swipe/issues"
   },
-  "homepage": "https://github.com/future-team/slide-swipe"
+  "homepage": "https://github.com/slashhuang/slide-swipe"
 }
