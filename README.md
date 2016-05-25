@@ -27,7 +27,10 @@
 ## UI展示
 >![slide-swipe展示](/example/img/slide-swipe.gif)
 
-
+##使用
+```bash
+  cnpm install slide-swipe
+```
 ## example[demo中的使用代码]
 ```javascript
     import Slider from '../../src/index.js';
@@ -80,6 +83,5 @@
 
 ## 单元测试
 ``` bash
-    cnpm install slie-swipe
     npm run test
 ```
