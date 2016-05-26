@@ -41,7 +41,6 @@ gulp.task('example-webpack',function(done){
 gulp.task('demo-webpack', function(done) {
 
   var wbpk = Object.create(demoWebpackConfig);
-
   wbpk.devtool = 'eval';
   wbpk.entry = [
     'webpack-dev-server/client?http://127.0.0.1:' + 8081,
@@ -60,8 +59,7 @@ gulp.task('demo-webpack', function(done) {
     hot: true,
     historyApiFallback: false,
     filename: config.name+".js",
-    publicPath: "/example/",
-    //headers: { "X-Custom-Header": "yes" },
+    publicPath: "/example/js",
     stats: { colors: true }
   });
   server.listen(8081, "localhost", function() {});

@@ -7,6 +7,6 @@ import Slider from './Slider.js';
 import GestureEvent from './GestureEvent.js';
 (function(root){
     root.Slider=Slider;
-}(this));
+}(typeof window !== "undefined" ? window : this));
 Slider.GestureEvent=GestureEvent;
 module.exports=Slider;

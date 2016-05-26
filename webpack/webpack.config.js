@@ -27,23 +27,11 @@ module.exports ={
             commonjs: 'react',
             amd: 'react'
         },
-        'eagle-ui': {
-            root: 'Eagleui',
-            commonjs2: 'eagle-ui',
-            commonjs: 'eagle-ui',
-            amd: 'eagle-ui'
-        },
         'react/lib/ReactDOM': {
             root: 'ReactDom',
             commonjs2: 'react/lib/ReactDOM',
             commonjs: 'react/lib/ReactDOM',
             amd: 'react/lib/ReactDOM'
-        },
-        'eagle-ui/lib/utils/Component': {
-            root: 'Component',
-            commonjs2: 'eagle-ui/lib/utils/Component',
-            commonjs: 'eagle-ui/lib/utils/Component',
-            amd: 'eagle-ui/lib/utils/Component'
         }
     }],
     module:{
@@ -55,16 +43,11 @@ module.exports ={
             },
             {
                 test: /\.less$/,
-                loader: "style-loader!css-loader!less-loader"
-            }/*,
-             {
-             test: /\.less$/,
-             loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-             },*/
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+            }
         ]
     },
     plugins: [
-        //new webpack.optimize.CommonsChunkPlugin('common.js')
-        //new ExtractTextPlugin(path.join(config.name+'.css'))
+        new ExtractTextPlugin(path.join('example.css'))
     ]
 };

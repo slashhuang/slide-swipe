@@ -21,17 +21,15 @@ var getEntry =function() {
     return webpackConfigEntry;
 };
 
-module.exports =extend({}, {
-    //entry:baseFileDir+'src/index.js',
+module.exports ={
     entry:[
         './example/src/index.js'
     ],
     output:{
         libraryTarget: 'umd',
-        path:path.join(process.cwd(),'example'),
+        path:path.join(process.cwd(),'example/js'),
         filename:config.name+'.js'
     },
-    devtool:'eval',
     module:{
         loaders:[
             {
@@ -45,24 +43,4 @@ module.exports =extend({}, {
             }
         ]
     }
-});
-/*
- module:{
- module:{
- loaders:[
- {
- test: /\.js$/,
- loader: 'babel',
- exclude: /node_modules/
- },
- {
- test: /\.less$/,
- loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
- }
- ]
- }
- },
- plugins: [
- new ExtractTextPlugin(path.join('example.css'))
- ]
- */
+};
