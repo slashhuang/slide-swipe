@@ -1,6 +1,6 @@
 {
   "name": "slide-swipe",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "slide-swipe is a light weight lib for mobile web app slide and swipe management",
   "main": "lib/",
   "repository": "git@github.com:slashhuang/slide-swipe.git",

@@ -30,7 +30,7 @@
 ```bash
    npm install slide-swipe
 ```
-## 使用[演示代码]
+## demo[使用代码]
 ```javascript
     import Slider from 'slide-swipe';
     var NodeList=document.getElementsByClassName('container');
@@ -77,7 +77,7 @@
     var autoInstance = new Slider(NodeList[3],node3Options);
 ```
 
-## 单元测试
+## unit test[单元测试]
 ``` bash
     npm run test
 ```
