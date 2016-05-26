@@ -66,7 +66,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("/**\n * Created by slashhuang on 16/5/22.\n * 主程序入口\n */\n\n'use strict';\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nvar _SliderJs = __webpack_require__(3);\n\nvar _SliderJs2 = _interopRequireDefault(_SliderJs);\n\nvar _GestureEventJs = __webpack_require__(5);\n\nvar _GestureEventJs2 = _interopRequireDefault(_GestureEventJs);\n\nwindow.Slider = _SliderJs2['default'];\n_SliderJs2['default'].GestureEvent = _GestureEventJs2['default'];\nmodule.exports = _SliderJs2['default'];\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/index.js\n ** module id = 2\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/index.js?");
+	eval("/**\n * Created by slashhuang on 16/5/22.\n * 主程序入口\n */\n\n'use strict';\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nvar _SliderJs = __webpack_require__(3);\n\nvar _SliderJs2 = _interopRequireDefault(_SliderJs);\n\nvar _GestureEventJs = __webpack_require__(5);\n\nvar _GestureEventJs2 = _interopRequireDefault(_GestureEventJs);\n\n(function (root) {\n  root.Slider = _SliderJs2['default'];\n})(undefined);\n_SliderJs2['default'].GestureEvent = _GestureEventJs2['default'];\nmodule.exports = _SliderJs2['default'];\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/index.js\n ** module id = 2\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ },
 /* 3 */

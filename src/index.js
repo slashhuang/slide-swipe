@@ -5,7 +5,8 @@
 
 import Slider from './Slider.js';
 import GestureEvent from './GestureEvent.js';
-
-window.Slider=Slider;
+(function(root){
+    root.Slider=Slider;
+}(this));
 Slider.GestureEvent=GestureEvent;
 module.exports=Slider;
