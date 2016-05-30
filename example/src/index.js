@@ -1,4 +1,9 @@
+require('../demo.less');
+
 import Slider from '../../src/index.js';
+/**
+ * demo入口
+ */
 var NodeList=document.getElementsByClassName('container');
 
 /**
@@ -44,3 +49,4 @@ var node3Options={
     activeClass:'indicator-active'//滑动容器下方小圆点激活的className值
 };
 var autoInstance = new Slider(NodeList[3],node3Options);
+

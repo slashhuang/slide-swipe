@@ -6,115 +6,50 @@
     <!-- 优先使用 IE 最新版本和 Chrome -->
     <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="no" />
-
-    <title>图片预览</title>
     <style>
-        .container{
-            position: relative;
-            width:100%;
-            height:100px;
-            font-size: 0;
-            overflow:hidden;
-        }
-        #horizontal,#horizontal-no-ball,#auto-play{
-            width:400%;
-            height:100px;
-            transition: all ease .4s;
-        }
-        #horizontal img,#horizontal-no-ball img,#auto-play img{
-            width:25%;
-            height:inherit;
-            display: inline-block;
-        }
-        #vertical{
-            width:100%;
-            height:400px;
-            transition: all ease .4s;
-        }
-        #vertical img{
-            width:100%;
-            height:100px;
-            display: inline-block;
-        }
-        .over-flow{
-            word-break: break-all;
-            width:100%;
-            height:1000px;
-            background-color: #0086b3;
-        }
-        .hint{
-            text-align: center;
-            margin:10px;
-            font-size: 17px;
-        }
-        .img-indicator{
-            position: absolute;
-            width:200px;
-            bottom:20px;
-            left:50%;
-            margin-left:-100px;
-            text-align: center;
-        }
-        .img-indicator i{
-            display: inline-block;
-            margin:0 5px;
-            border-radius:20px;
-            width:10px;
-            height:10px;
-            background-color: white;
-        }
-        .img-indicator i.indicator-active{
-            background-color: #009998;
-        }
-
-
-        .img-vertical-indicator{
-            position: absolute;
-            height:100px;
-            width: 10px;
-            right:20px;
-            top:50%;
-            margin-top:-50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .img-vertical-indicator i{
-            display: block;
-            margin:3px;
-            border-radius:20px;
-            width:10px;
-            height:10px;
-            background-color: white;
-        }
-        .img-vertical-indicator i.indicator-active{
-            background-color: #009998;
-        }
-
-    </style>
+    .hint{
+        text-align: center;
+        margin:10px;
+        font-size: 15px;
+    }</style>
+   <title>图片预览</title>
 </head>
 <body>
 
 <div class="hint">请横向滑动图片，查看简单测试</div>
 <div class="container">
-    <div class="img-list" id="horizontal-no-ball"></div>
+    <div class="img-list horizontal">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1478257864,2882073929&amp;fm=21&amp;gp=0.jpg">
+        <img src="http://www.bz55.com/uploads/allimg/150309/139-150309101F7.jpg">
+        <img src="http://img2.zol.com.cn/product/95/20/ceSFw3e3TqLNM.jpg">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1432870041,1164599966&amp;fm=21&amp;gp=0.jpg">
+    </div>
 </div>
 <div class="hint">查看自动循环播放</div>
 
 <div class="container">
-    <div class="img-list" id="auto-play"></div>
-    <div class="img-indicator" id="auto-indicator" >
+    <div class="img-list auto-play">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1478257864,2882073929&amp;fm=21&amp;gp=0.jpg">
+        <img src="http://www.bz55.com/uploads/allimg/150309/139-150309101F7.jpg">
+        <img src="http://img2.zol.com.cn/product/95/20/ceSFw3e3TqLNM.jpg">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1432870041,1164599966&amp;fm=21&amp;gp=0.jpg">
+    </div>
+    <div class="img-indicator auto-indicator">
         <i class="indicator-active"></i>
-        <i></i>
-        <i></i>
-        <i></i>
+        <i class=""></i>
+        <i class=""></i>
+        <i class=""></i>
     </div>
 </div>
 <div class="hint">请横向滑动图片，查看富交互测试</div>
 <div class="container">
-    <div class="img-list" id="horizontal"></div>
-    <div class="img-indicator" id="horizontal-indicator" >
+    <div class="img-list horizontal">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1478257864,2882073929&amp;fm=21&amp;gp=0.jpg">
+        <img src="http://www.bz55.com/uploads/allimg/150309/139-150309101F7.jpg">
+        <img src="http://img2.zol.com.cn/product/95/20/ceSFw3e3TqLNM.jpg">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1432870041,1164599966&amp;fm=21&amp;gp=0.jpg">
+    </div>
+    <div class="img-indicator horizontal-indicator">
         <i class="indicator-active"></i>
         <i></i>
         <i></i>
@@ -125,33 +60,20 @@
 <div class="hint">请竖向滑动图片，查看富交互测试</div>
 
 <div class="container">
-    <div class="img-list" id="vertical"></div>
-    <div class="img-vertical-indicator" id="vertical-indicator" >
+    <div class="img-list vertical">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1478257864,2882073929&amp;fm=21&amp;gp=0.jpg">
+        <img src="http://www.bz55.com/uploads/allimg/150309/139-150309101F7.jpg">
+        <img src="http://img2.zol.com.cn/product/95/20/ceSFw3e3TqLNM.jpg">
+        <img src="http://img5.imgtn.bdimg.com/it/u=1432870041,1164599966&amp;fm=21&amp;gp=0.jpg">
+    </div>
+    <div class="img-vertical-indicator vertical-indicator">
         <i class="indicator-active"></i>
         <i></i>
         <i></i>
         <i></i>
     </div>
 </div>
-
 <div class="over-flow" id="info"></div>
-<script>
-    var imgList=[
-       'http://img5.imgtn.bdimg.com/it/u=1478257864,2882073929&fm=21&gp=0.jpg',
-        'http://www.bz55.com/uploads/allimg/150309/139-150309101F7.jpg',
-        'http://img2.zol.com.cn/product/95/20/ceSFw3e3TqLNM.jpg',
-        'http://img5.imgtn.bdimg.com/it/u=1432870041,1164599966&fm=21&gp=0.jpg'
-    ];
-    var imgListNodes=document.getElementsByClassName('img-list');
-    for(var i=0;i<imgListNodes.length;i++){
-        for(var j=0;j<imgList.length;j++){
-            imgListNodes[i].innerHTML+="<img src='"+imgList[j]+"'>"
-        }
-    }
-</script>
-
 <script src="js/slide-swipe.js"></script>
-<!--<script src="/example/slide-swipe.js"></script>-->
 </body>
 </html>
-《div on》

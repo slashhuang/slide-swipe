@@ -41,12 +41,7 @@ gulp.task('example-webpack',function(done){
 gulp.task('demo-webpack', function(done) {
 
   var wbpk = Object.create(demoWebpackConfig);
-  wbpk.devtool = 'eval';
-  wbpk.entry = [
-    'webpack-dev-server/client?http://127.0.0.1:' + 8081,
-    'webpack/hot/only-dev-server',
-    './example/src/index.js'
-  ];
+  wbpk.entry = './example/src/index.js';
 
   wbpk.plugins = [
     new webpack.HotModuleReplacementPlugin(),

@@ -19,19 +19,31 @@ export default class Slider extends GestureEvent{
      * @param ele 滑动元素container
      * @param option 组件参数
      */
-    constructor(ele,option=Slider.defaultOption){
-        let {containerClassName}=option;//滑动容器的className值
-        let targetNode = ele.getElementsByClassName(containerClassName)[0];
+    constructor(ele,options){
+        let option=Object.assign({},Slider.defaultOption,options);
+
+        let targetNode = ele.getElementsByClassName(option.containerClassName)[0];
+
+        //滑动容器的className值
         if(!(targetNode && targetNode.children && targetNode.children.length)){
             warning("please pass `containerClassName` as a  key to option which is the 2nd argument of  `Slider`");
             return;
         }
+
         super(targetNode,option);
         let that=this;
         /**
          * dom节点信息
          */
         this.node=targetNode;
+
+        //console.log(option['swipeGap'],
+        //    this.node['offsetWidth'],this.node['offsetHeight'],this.node.children.length);
+        //console.log('node',this.node['offsetWidth'], Date.now());
+        //setTimeout(()=>{console.log(this.node['offsetWidth'])},160);
+
+
+
         this.parentNode=ele;
         /**
          * 配置信息
