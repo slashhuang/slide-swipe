@@ -1,6 +1,5 @@
-require('../demo.less');
-
 import Slider from '../../src/index.js';
+
 /**
  * demo入口
  */

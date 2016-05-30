@@ -32,19 +32,10 @@ export default class Slider extends GestureEvent{
 
         super(targetNode,option);
         let that=this;
-        /**
-         * dom节点信息
-         */
-        this.node=targetNode;
-
-        //console.log(option['swipeGap'],
-        //    this.node['offsetWidth'],this.node['offsetHeight'],this.node.children.length);
-        //console.log('node',this.node['offsetWidth'], Date.now());
-        //setTimeout(()=>{console.log(this.node['offsetWidth'])},160);
-
 
 
         this.parentNode=ele;
+        this.node=targetNode;
         /**
          * 配置信息
          */
@@ -54,16 +45,6 @@ export default class Slider extends GestureEvent{
          * 这个功能暂时不用扩展了
          */
         this.bindDefinedEvents();
-
-        /**
-         * 自动循环播放
-         */
-        if(option.autoPlay){
-            let swipeType=option.direction=='horizontal'?'swipeLeft':'swipeUp';
-            setInterval(()=>{
-                that.trigger(swipeType)
-            },option.duration||1000)
-        }
         /**
          * currentIndex:当前数据
          * swipeLastIndex:swipe子元素的最后序数号
@@ -76,6 +57,15 @@ export default class Slider extends GestureEvent{
             (this.options.direction=='horizontal'?
                 this.node['offsetWidth']:this.node['offsetHeight'])/(this.node.children.length)//每次滑动宽度/每次滑动高度
         };
+        /**
+         * 自动循环播放
+         */
+        if(option.autoPlay){
+            let swipeType=option.direction=='horizontal'?'swipeLeft':'swipeUp';
+            setInterval(()=>{
+                that.trigger(swipeType)
+            },option.duration||1000)
+        }
     }
     bindDefinedEvents(){
         let that = this;
@@ -147,6 +137,8 @@ export default class Slider extends GestureEvent{
             this.animationInfo.currentIndex=this.animationInfo['swipeLastIndex'];
         }
         this.ele.style["-webkit-transform"]=this.renderStyle(this.animationInfo);
+        this.ele.style["-moz-transform"]=this.renderStyle(this.animationInfo);
+        this.ele.style["transform"]=this.renderStyle(this.animationInfo);
     }
     swipeLeft(){
         if(this.animationInfo.currentIndex<this.animationInfo['swipeLastIndex']){
@@ -155,6 +147,9 @@ export default class Slider extends GestureEvent{
             this.animationInfo.currentIndex=0;
         }
         this.ele.style["-webkit-transform"]=this.renderStyle(this.animationInfo);
+        this.ele.style["-moz-transform"]=this.renderStyle(this.animationInfo);
+        this.ele.style["transform"]=this.renderStyle(this.animationInfo);
+
     }
     swipeUp(e,info){
         this['swipeLeft'](e,info);
