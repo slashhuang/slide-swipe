@@ -19,7 +19,7 @@
    git clone git@github.com:slashhuang/slide-swipe.git
 ```
 
-## 大众点评基于slide-swipe开发的react滑动组件ph-swipe
+## 点评交易后台FE基于slide-swipe开发的react滑动组件ph-swipe
 ``` javascript
     npm install ph-swipe
      import React,{Component} from 'react';
