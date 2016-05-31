@@ -6,13 +6,14 @@
     <!-- 优先使用 IE 最新版本和 Chrome -->
     <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="no" />
-
+    <link rel="stylesheet/less" type="text/css" href="../css/index.less" />
+    <script src="http://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
     <title>图片预览</title>
 </head>
 <body>
 
 <div class="hint">请横向滑动图片，查看简单测试</div>
-<div class="container">
+<div class="slide-container">
     <div class="img-list horizontal">
         <img src="http://img5.imgtn.bdimg.com/it/u=1478257864,2882073929&amp;fm=21&amp;gp=0.jpg">
         <img src="http://www.bz55.com/uploads/allimg/150309/139-150309101F7.jpg">
@@ -22,7 +23,7 @@
 </div>
 <div class="hint">查看自动循环播放</div>
 
-<div class="container">
+<div class="slide-container">
     <div class="img-list auto-play"></div>
     <div class="img-indicator auto-indicator">
         <i class="indicator-active"></i>
@@ -32,7 +33,7 @@
     </div>
 </div>
 <div class="hint">请横向滑动图片，查看富交互测试</div>
-<div class="container">
+<div class="slide-container">
     <div class="img-list horizontal"></div>
     <div class="img-indicator horizontal-indicator">
         <i class="indicator-active"></i>
@@ -44,7 +45,7 @@
 
 <div class="hint">请竖向滑动图片，查看富交互测试</div>
 
-<div class="container">
+<div class="slide-container">
     <div class="img-list vertical"></div>
     <div class="img-vertical-indicator vertical-indicator">
         <i class="indicator-active"></i>
@@ -69,7 +70,5 @@
     }
 </script>
 <script src="js/slide-swipe.js"></script>
-<link rel="stylesheet/less" type="text/css" href="./demo.less" />
-<script src="http://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
 </body>
 </html>

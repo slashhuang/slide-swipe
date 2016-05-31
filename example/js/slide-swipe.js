@@ -72,7 +72,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * demo入口
 	 */
-	var NodeList = document.getElementsByClassName('container');
+	var NodeList = document.getElementsByClassName('slide-container');
+
 	/**
 	 * 测试普通横向滑动模块
 	 */
