@@ -20,7 +20,7 @@
    git clone git@github.com:slashhuang/slide-swipe.git
 ```
 
-## (点评交易后台FE基于slide-swipe开发的react滑动组件ph-swipe)[https://github.com/future-team/ph-swipe]
+## [点评交易后台FE基于slide-swipe开发的react滑动组件ph-swipe](https://github.com/future-team/ph-swipe)
 
 ## 单独使用[使用代码]
 ```javascript
